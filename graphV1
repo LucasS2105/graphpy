@@ -1,0 +1,46 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Função para posição x(t)
+def x(t):
+    return 10 + 2.5 * t**2
+
+# Derivada de x(t) para obter a velocidade v(t)
+def v(t):
+    return 5 * t  # Derivada de 2.5t^2 é 5t
+
+# Derivada da velocidade para obter a aceleração a(t)
+def a(t):
+    return 5  # A aceleração é constante
+
+# Ponto (a) - Velocidade média de t = 2s a t = 3s
+t1 = 2
+t2 = 3
+x1 = x(t1)
+x2 = x(t2)
+velocidade_media = (x2 - x1) / (t2 - t1)
+
+# Ponto (b) - Velocidade instantânea em t = 2s
+velocidade_instantanea_t2 = v(t1)
+
+# Ponto (c) - Aceleração
+aceleracao = a(0)  # Como é constante, pode-se calcular em qualquer valor de t
+
+# Ponto (d) - Gráfico de x(t) em função de t
+t_vals = np.linspace(0, 5, 100)  # Valores de t de 0 a 5 segundos
+x_vals = x(t_vals)
+
+# Plotar o gráfico
+plt.figure(figsize=(8, 6))
+plt.plot(t_vals, x_vals, label="x(t) = 10 + 2.5t²")
+plt.scatter([2, 3], [x(2), x(3)], color="red", zorder=5)  # Marcar t=2s e t=3s
+plt.text(2, x(2), f"x(2s)={x(2):.2f}", fontsize=12, verticalalignment='bottom', horizontalalignment='right')
+plt.text(3, x(3), f"x(3s)={x(3):.2f}", fontsize=12, verticalalignment='bottom', horizontalalignment='right')
+plt.title("Gráfico de x(t) em função de t")
+plt.xlabel("Tempo t (s)")
+plt.ylabel("Posição x(t) (cm)")
+plt.grid(True)
+plt.legend()
+plt.show()
+
+velocidade_media, velocidade_instantanea_t2, aceleracao
